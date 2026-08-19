@@ -13,8 +13,9 @@ class HealthResponse(BaseModel):
 async def health_check():
     """Basic health check endpoint."""
     from .config import get_settings
+
     settings = get_settings()
-    
+
     return HealthResponse(
         status="ok",
         version=settings.APP_VERSION,

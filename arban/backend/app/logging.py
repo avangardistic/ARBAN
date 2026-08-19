@@ -12,7 +12,10 @@ class CustomJsonFormatter(jsonlogger.JsonFormatter):
     """Custom JSON formatter for structured logging."""
 
     def add_fields(
-        self, log_record: Dict[str, Any], record: logging.LogRecord, message_dict: Dict[str, Any]
+        self,
+        log_record: Dict[str, Any],
+        record: logging.LogRecord,
+        message_dict: Dict[str, Any],
     ) -> None:
         super().add_fields(log_record, record, message_dict)
         log_record["level"] = record.levelname
@@ -21,9 +24,9 @@ class CustomJsonFormatter(jsonlogger.JsonFormatter):
 
 def setup_logging() -> None:
     """Configure application logging."""
-    
+
     log_level = getattr(logging, settings.LOG_LEVEL.upper(), logging.INFO)
-    
+
     if settings.LOG_FORMAT == "json":
         formatter = CustomJsonFormatter(
             "%(asctime)s %(name)s %(levelname)s %(message)s"
@@ -32,15 +35,15 @@ def setup_logging() -> None:
         formatter = logging.Formatter(
             "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
         )
-    
+
     handler = logging.StreamHandler(sys.stdout)
     handler.setFormatter(formatter)
     handler.setLevel(log_level)
-    
+
     root_logger = logging.getLogger()
     root_logger.addHandler(handler)
     root_logger.setLevel(log_level)
-    
+
     # Set noisy libraries to WARNING
     logging.getLogger("httpx").setLevel(logging.WARNING)
     logging.getLogger("httpcore").setLevel(logging.WARNING)

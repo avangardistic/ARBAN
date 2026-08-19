@@ -3,6 +3,7 @@ Mock provider for testing and demo purposes.
 
 This provider returns deterministic test data for development and testing.
 """
+
 from typing import List, Optional
 from datetime import datetime, timedelta
 
@@ -14,14 +15,14 @@ class MockProvider(PredictionMarketProvider):
 
     def __init__(self):
         super().__init__(name="mock", enabled=True)
-        
+
         # Create demo markets with known arbitrage opportunities
         self._demo_markets = self._create_demo_markets()
 
     def _create_demo_markets(self) -> List[Market]:
         """Create demo markets for testing."""
         now = datetime.utcnow()
-        
+
         # Market 1: Binary arbitrage opportunity (YES=0.43, NO=0.51)
         market1 = Market(
             provider="mock",
@@ -48,7 +49,7 @@ class MockProvider(PredictionMarketProvider):
                 ),
             ],
         )
-        
+
         # Market 2: No arbitrage (YES=0.52, NO=0.51, sum=1.03 > 1)
         market2 = Market(
             provider="mock",
@@ -75,7 +76,7 @@ class MockProvider(PredictionMarketProvider):
                 ),
             ],
         )
-        
+
         # Market 3: Multi-outcome arbitrage (A=0.40, Draw=0.30, B=0.25, sum=0.95)
         market3 = Market(
             provider="mock",
@@ -109,7 +110,7 @@ class MockProvider(PredictionMarketProvider):
                 ),
             ],
         )
-        
+
         return [market1, market2, market3]
 
     async def get_markets(self) -> List[Market]:
@@ -128,20 +129,20 @@ class MockProvider(PredictionMarketProvider):
         market = await self.get_market(market_id)
         if not market:
             return None
-        
+
         # Create synthetic order book from outcomes
         bids = []
         asks = []
-        
+
         for outcome in market.outcomes:
             # Simulate bid-ask spread
             bid_price = outcome.price * 0.98  # 2% below mid
             ask_price = outcome.price * 1.02  # 2% above mid
             size = outcome.available_size / 2
-            
+
             bids.append((bid_price, size))
             asks.append((ask_price, size))
-        
+
         return OrderBook(
             provider="mock",
             market_id=market_id,
