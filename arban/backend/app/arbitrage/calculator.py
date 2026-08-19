@@ -167,9 +167,14 @@ def calculate_stakes(
         return [Decimal("0")] * len(prices)
     
     stakes = []
-    for price in prices:
-        stake = capital * price / total_price
-        stakes.append(stake.quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP))
+    for i, price in enumerate(prices):
+        # For the last item, use remainder to ensure sum equals capital exactly
+        if i == len(prices) - 1:
+            stake = capital - sum(stakes)
+        else:
+            stake = capital * price / total_price
+            stake = stake.quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP)
+        stakes.append(stake)
     
     return stakes
 
