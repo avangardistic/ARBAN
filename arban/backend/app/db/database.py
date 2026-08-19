@@ -8,6 +8,7 @@ settings = get_settings()
 
 class Base(DeclarativeBase):
     """Base class for SQLAlchemy models."""
+
     pass
 
 

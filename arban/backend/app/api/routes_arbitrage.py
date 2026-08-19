@@ -36,7 +36,9 @@ async def detect_binary_arbitrage(
     return []
 
 
-@router.get("/arbitrage/multi-outcome", response_model=List[MultiOutcomeArbitrageResult])
+@router.get(
+    "/arbitrage/multi-outcome", response_model=List[MultiOutcomeArbitrageResult]
+)
 async def detect_multi_outcome_arbitrage(
     min_roi: float = Query(0.0, ge=0),
     limit: int = Query(50, ge=1, le=200),

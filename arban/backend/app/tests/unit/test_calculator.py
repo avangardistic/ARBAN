@@ -1,5 +1,5 @@
 """Unit tests for arbitrage calculator."""
-import pytest
+
 from decimal import Decimal
 
 from backend.app.arbitrage.calculator import (
@@ -19,9 +19,9 @@ class TestBinaryArbitrage:
         """Test detection of valid arbitrage (YES=0.43, NO=0.51)."""
         yes = Decimal("0.43")
         no = Decimal("0.51")
-        
+
         is_arb, cost, profit, roi = calculate_binary_arbitrage(yes, no)
-        
+
         assert is_arb is True
         assert cost == Decimal("0.94")
         assert profit == Decimal("0.06")
@@ -32,9 +32,9 @@ class TestBinaryArbitrage:
         """Test boundary case where sum equals exactly 1."""
         yes = Decimal("0.50")
         no = Decimal("0.50")
-        
+
         is_arb, cost, profit, roi = calculate_binary_arbitrage(yes, no)
-        
+
         assert is_arb is False
         assert cost == Decimal("1.00")
         assert profit == Decimal("0")
@@ -44,9 +44,9 @@ class TestBinaryArbitrage:
         """Test case where sum > 1 (no arbitrage)."""
         yes = Decimal("0.52")
         no = Decimal("0.51")
-        
+
         is_arb, cost, profit, roi = calculate_binary_arbitrage(yes, no)
-        
+
         assert is_arb is False
         assert cost == Decimal("1.03")
         assert profit == Decimal("0")
@@ -55,9 +55,9 @@ class TestBinaryArbitrage:
         """Test with larger arbitrage opportunity."""
         yes = Decimal("0.30")
         no = Decimal("0.40")
-        
+
         is_arb, cost, profit, roi = calculate_binary_arbitrage(yes, no)
-        
+
         assert is_arb is True
         assert cost == Decimal("0.70")
         assert profit == Decimal("0.30")
@@ -75,9 +75,9 @@ class TestMultiOutcomeArbitrage:
             Decimal("0.30"),
             Decimal("0.25"),
         ]
-        
+
         is_arb, cost, profit, roi = calculate_multi_outcome_arbitrage(prices)
-        
+
         assert is_arb is True
         assert cost == Decimal("0.95")
         assert profit == Decimal("0.05")
@@ -91,9 +91,9 @@ class TestMultiOutcomeArbitrage:
             Decimal("0.35"),
             Decimal("0.30"),
         ]
-        
+
         is_arb, cost, profit, roi = calculate_multi_outcome_arbitrage(prices)
-        
+
         assert is_arb is False
         assert cost == Decimal("1.10")
         assert profit == Decimal("0")
@@ -106,9 +106,9 @@ class TestMultiOutcomeArbitrage:
             Decimal("0.20"),
             Decimal("0.20"),
         ]
-        
+
         is_arb, cost, profit, roi = calculate_multi_outcome_arbitrage(prices)
-        
+
         assert is_arb is True
         assert cost == Decimal("0.80")
         assert profit == Decimal("0.20")
@@ -123,9 +123,9 @@ class TestStakeCalculation:
         """Test stake calculation for binary outcome."""
         capital = Decimal("1000")
         prices = [Decimal("0.43"), Decimal("0.51")]
-        
+
         stakes = calculate_stakes(capital, prices)
-        
+
         assert len(stakes) == 2
         # Sum should equal capital
         assert sum(stakes) == capital
@@ -136,9 +136,9 @@ class TestStakeCalculation:
         """Test stake calculation for multi-outcome."""
         capital = Decimal("1000")
         prices = [Decimal("0.40"), Decimal("0.30"), Decimal("0.25")]
-        
+
         stakes = calculate_stakes(capital, prices)
-        
+
         assert len(stakes) == 3
         assert sum(stakes) == capital
 
@@ -146,9 +146,9 @@ class TestStakeCalculation:
         """Test handling of zero prices."""
         capital = Decimal("1000")
         prices = [Decimal("0"), Decimal("0")]
-        
+
         stakes = calculate_stakes(capital, prices)
-        
+
         assert all(s == Decimal("0") for s in stakes)
 
 
@@ -159,9 +159,9 @@ class TestFees:
         """Test basic fee calculation."""
         capital = Decimal("1000")
         fee_rates = [Decimal("0.01"), Decimal("0.02")]  # 1% and 2%
-        
+
         fees = calculate_fees(capital, fee_rates)
-        
+
         assert fees == Decimal("30")  # 10 + 20
 
     def test_fees_with_network(self):
@@ -169,9 +169,9 @@ class TestFees:
         capital = Decimal("1000")
         fee_rates = [Decimal("0.01")]
         network_fee = Decimal("5")
-        
+
         fees = calculate_fees(capital, fee_rates, network_fee)
-        
+
         assert fees == Decimal("15")  # 10 + 5
 
 
@@ -183,9 +183,9 @@ class TestNetMetrics:
         gross_profit = Decimal("60")
         capital = Decimal("1000")
         fees = Decimal("10")
-        
+
         net_profit, net_roi = calculate_net_metrics(gross_profit, capital, fees)
-        
+
         assert net_profit == Decimal("50")
         # net_roi = 50 / 1010 = 0.0495...
         assert abs(float(net_roi) - 0.0495) < 0.001
@@ -204,7 +204,7 @@ class TestClassification:
             fees_known=True,
             executable_prices=True,
         )
-        
+
         assert result == "GUARANTEED"
 
     def test_executable(self):
@@ -216,7 +216,7 @@ class TestClassification:
             fees_known=True,
             executable_prices=True,
         )
-        
+
         assert result == "EXECUTABLE"
 
     def test_potential_low_liquidity(self):
@@ -229,7 +229,7 @@ class TestClassification:
             fees_known=True,
             executable_prices=True,
         )
-        
+
         assert result == "POTENTIAL"
 
     def test_theoretical(self):
@@ -240,7 +240,7 @@ class TestClassification:
             liquidity=Decimal("1000"),
             executable_prices=False,
         )
-        
+
         assert result == "THEORETICAL"
 
     def test_no_arbitrage(self):
@@ -250,5 +250,5 @@ class TestClassification:
             settlement_verified=True,
             liquidity=Decimal("1000"),
         )
-        
+
         assert result == "NO_ARBITRAGE"
