@@ -1,0 +1,35 @@
+{
+  "settings": {
+    "title": "تنظیمات",
+    "language": "زبان",
+    "timezone": "منطقه زمانی",
+    "calendar": "تقویم",
+    "currency": "واحد پول",
+    "min_roi": "حداقل ROI",
+    "min_profit": "حداقل سود",
+    "min_liquidity": "حداقل نقدشوندگی",
+    "min_executability": "حداقل امتیاز قابلیت اجرا",
+    "alerts": "هشدارها",
+    "simulation_mode": "حالت شبیه‌سازی",
+    "scan_interval": "بازه اسکن",
+    "notifications": "اعلان‌ها",
+    "email_notifications": "اعلان ایمیل",
+    "discord_notifications": "اعلان دیسکورد",
+    "telegram_notifications": "اعلان تلگرام",
+    "theme": "تم",
+    "light_mode": "حالت روشن",
+    "dark_mode": "حالت تاریک",
+    "auto_refresh": "به‌روزرسانی خودکار"
+  },
+  "filters": {
+    "provider": "ارائه‌دهنده",
+    "status": "وضعیت",
+    "opportunity_type": "نوع فرصت",
+    "time_range": "بازه زمانی",
+    "sport": "ورزش",
+    "category": "دسته‌بندی",
+    "classification": "طبقه‌بندی",
+    "apply_filters": "اعمال فیلترها",
+    "clear_filters": "پاک کردن فیلترها"
+  }
+}

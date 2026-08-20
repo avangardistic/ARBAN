@@ -1,0 +1,30 @@
+{
+  "analytics": {
+    "title": "تحلیل‌ها",
+    "overview": "نمای کلی",
+    "performance": "عملکرد",
+    "trends": "روندها",
+    "opportunity_count": "تعداد فرصت‌ها",
+    "best_roi": "بیشترین بازده",
+    "best_profit": "بیشترین سود",
+    "average_roi": "میانگین بازده",
+    "total_volume": "حجم کل",
+    "provider_distribution": "توزیع ارائه‌دهندگان",
+    "classification_breakdown": "تفکیک طبقه‌بندی",
+    "time_series": "سری زمانی",
+    "daily_opportunities": "فرصت‌های روزانه",
+    "roi_distribution": "توزیع ROI",
+    "liquidity_analysis": "تحلیل نقدشوندگی",
+    "risk_metrics": "سنجه‌های ریسک"
+  },
+  "dashboard": {
+    "system_status": "وضعیت سیستم",
+    "active_opportunities": "فرصت‌های فعال",
+    "count": "تعداد",
+    "highest_roi": "بیشترین بازده",
+    "highest_profit": "بیشترین سود",
+    "providers_online": "ارائه‌دهندگان آنلاین",
+    "last_scan": "آخرین اسکن",
+    "next_scan": "اسکن بعدی"
+  }
+}

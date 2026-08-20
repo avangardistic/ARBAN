@@ -1,0 +1,40 @@
+{
+  "provider": {
+    "name": "نام ارائه‌دهنده",
+    "status": "وضعیت",
+    "type": "نوع",
+    "description": "توضیحات",
+    "latency": "تأخیر",
+    "last_update": "آخرین به‌روزرسانی",
+    "markets_count": "تعداد بازارها",
+    "active_opportunities": "فرصت‌های فعال"
+  },
+  "providers": {
+    "polymarket": {
+      "name": "Polymarket",
+      "description": "بازار پیش‌بینی — رمزارز",
+      "type": "غیرمتمرکز"
+    },
+    "kalshi": {
+      "name": "Kalshi",
+      "description": "بازار پیش‌بینی — تنظیم‌شده",
+      "type": "متمرکز"
+    },
+    "limitless": {
+      "name": "Limitless",
+      "description": "بازار مشتقات رمزارز",
+      "type": "غیرمتمرکز"
+    },
+    "crypto_com": {
+      "name": "Crypto.com",
+      "description": "بازار پیش‌بینی صرافی",
+      "type": "متمرکز"
+    }
+  },
+  "connection_status": {
+    "connected": "متصل",
+    "disconnected": "قطع شده",
+    "connecting": "در حال اتصال",
+    "error": "خطا"
+  }
+}
