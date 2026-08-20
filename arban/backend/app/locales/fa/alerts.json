@@ -1,0 +1,22 @@
+{
+  "alerts": {
+    "new_opportunity": "فرصت جدید شناسایی شد",
+    "net_roi": "ROI خالص: {roi}%",
+    "estimated_net_profit": "سود خالص تخمینی: ${profit}",
+    "executability_score": "امتیاز قابلیت اجرا: {score}/100",
+    "opportunity_expired": "فرصت منقضی شد",
+    "provider_offline": "ارائه‌دهنده آفلاین شد",
+    "low_liquidity": "نقدشوندگی پایین",
+    "high_slippage": "لغزش قیمت بالا",
+    "settlement_warning": "هشدار تسویه",
+    "price_stale": "قیمت قدیمی است",
+    "threshold_reached": "آستانه رسید"
+  },
+  "notification_types": {
+    "info": "اطلاعات",
+    "success": "موفقیت",
+    "warning": "هشدار",
+    "error": "خطا",
+    "critical": "بحرانی"
+  }
+}
